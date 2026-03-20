@@ -128,6 +128,143 @@ img { height: auto; }
   text-decoration: none;
 }
 
+/* Topbar and header cleanup */
+.site-top .topbar-transparent {
+  padding: 12px 0;
+}
+
+.site-top .top-info-contact {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px 34px;
+  flex-wrap: wrap;
+}
+
+.site-top .top-info-contact > li {
+  float: none !important;
+  display: inline-flex;
+  align-items: center;
+  margin: 0;
+}
+
+.site-top .top-info-contact .info-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+}
+
+.site-top .top-info-contact .info-wrapper,
+.site-top .top-info-contact .info-title {
+  margin: 0;
+}
+
+.header-trans-leftbox .header-wrapper,
+.header-trans-leftbox .site-nav-inner,
+.header-trans-leftbox .navbar {
+  width: 100%;
+}
+
+.header-trans-leftbox .site-nav-inner {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.header-trans-leftbox .navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+}
+
+.header-trans-leftbox .navbar-brand,
+.header-trans-leftbox .navbar-header {
+  flex: 0 0 auto;
+  margin-right: 24px;
+}
+
+.header-trans-leftbox .navbar .navbar-collapse {
+  flex: 1 1 auto;
+}
+
+.header-trans-leftbox ul.navbar-nav {
+  float: none !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 8px 18px;
+  width: 100%;
+  margin: 0 auto !important;
+  padding: 0;
+}
+
+.header-trans-leftbox ul.navbar-nav > li {
+  float: none !important;
+  display: inline-flex !important;
+  align-items: center;
+}
+
+.header-trans-leftbox ul.navbar-nav > li > a {
+  white-space: nowrap;
+}
+
+.header-trans-leftbox .nav-search {
+  flex: 0 0 auto;
+  margin-left: 8px;
+}
+
+@media (max-width: 991.98px) {
+  .site-top .top-info-contact {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .site-top .top-info-contact > li {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .header-trans-leftbox .site-nav-inner {
+    display: block;
+  }
+
+  .header-trans-leftbox .navbar {
+    flex-wrap: wrap;
+  }
+
+  .header-trans-leftbox .navbar-brand,
+  .header-trans-leftbox .navbar-header {
+    margin-right: 0;
+  }
+
+  .header-trans-leftbox .navbar-toggler {
+    margin-left: auto;
+  }
+
+  .header-trans-leftbox .navbar .navbar-collapse {
+    width: 100%;
+    padding-top: 16px;
+  }
+
+  .header-trans-leftbox ul.navbar-nav {
+    gap: 0;
+  }
+
+  .header-trans-leftbox ul.navbar-nav > li {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .header-trans-leftbox .nav-search {
+    display: none;
+  }
+}
+
 .plans-wrapper {
   background: #f8f9fa;
   padding: 30px;
