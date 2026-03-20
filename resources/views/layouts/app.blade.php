@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
     @stack('styles')
 </head>
-<body>
+<body class="site-shell">
     <div class="body-inner">
         @if(($showTopbar ?? false) === true)
             @include('partials.topbar')
