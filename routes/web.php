@@ -25,13 +25,10 @@ Route::controller(AuthController::class)->group(function (): void {
 });
 
 Route::prefix('dashboard')->name('dashboard.')->group(function (): void {
-    // Future middleware example:
-    // Route::middleware(['auth', 'role:user'])->group(...);
     Route::get('/', [DashboardController::class, 'user'])->name('user');
+    Route::post('/deposit', [DashboardController::class, 'createDeposit'])->name('deposit');
 });
 
 Route::prefix('admin')->name('admin.')->group(function (): void {
-    // Future middleware example:
-    // Route::middleware(['auth', 'role:admin'])->group(...);
     Route::get('/dashboard', [DashboardController::class, 'admin'])->name('dashboard');
 });

@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Support\AccountStore;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class AuthController extends Controller
 {
+    public function __construct(private readonly AccountStore $accountStore)
+    {
+    }
+
     public function showLogin(): View
     {
         return view('pages.auth.login', [
@@ -31,8 +36,18 @@ class AuthController extends Controller
             'password' => ['required'],
         ]);
 
-        // Future Laravel auth logic belongs here.
-        return redirect()->route('login')->with('status', 'Login backend is prepared but not connected yet.');
+        $user = $this->accountStore->authenticate($request->string('email')->toString(), $request->string('password')->toString());
+
+        if (! $user) {
+            return back()
+                ->withErrors(['email' => 'The email or password is incorrect.'])
+                ->withInput($request->only('email'));
+        }
+
+        $request->session()->put('auth_user_id', $user['id']);
+        $request->session()->put('auth_role', $user['role']);
+
+        return redirect()->route($user['role'] === 'admin' ? 'admin.dashboard' : 'dashboard.user');
     }
 
     public function register(Request $request): RedirectResponse
@@ -44,13 +59,26 @@ class AuthController extends Controller
             'terms' => ['accepted'],
         ]);
 
-        // Future registration, email verification, and role seeding belong here.
-        return redirect()->route('register')->with('status', 'Registration backend is prepared but not connected yet.');
+        if ($this->accountStore->emailExists($request->string('email')->toString())) {
+            return back()
+                ->withErrors(['email' => 'An account with this email already exists.'])
+                ->withInput($request->except('password', 'password_confirmation'));
+        }
+
+        $user = $this->accountStore->createUser($request->only('full_name', 'email', 'password'));
+
+        $request->session()->put('auth_user_id', $user['id']);
+        $request->session()->put('auth_role', $user['role']);
+
+        return redirect()->route('dashboard.user')->with('status', 'Your account has been created and you are now signed in.');
     }
 
-    public function logout(): RedirectResponse
+    public function logout(Request $request): RedirectResponse
     {
-        // Future logout logic belongs here.
-        return redirect()->route('home')->with('status', 'Logout placeholder route is ready.');
+        $request->session()->forget(['auth_user_id', 'auth_role']);
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('home')->with('status', 'You have been logged out.');
     }
 }

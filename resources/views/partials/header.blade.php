@@ -4,7 +4,7 @@
             <div class="site-nav-inner">
                 <nav class="navbar navbar-expand-lg site-navbar">
                     <div class="navbar-brand navbar-header site-branding">
-                        <div class="logo">
+                        <div class="logo site-logo">
                             <a href="{{ route('home') }}">
                                 <img src="{{ asset('assets/images/logo.svg') }}" alt="Wealth Options">
                             </a>
@@ -16,21 +16,23 @@
                     </button>
 
                     <div class="collapse navbar-collapse site-navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav site-navbar-nav">
-                            <li class="nav-item {{ request()->routeIs('home') ? 'active' : '' }}">
-                                <a class="nav-link" href="{{ route('home') }}">Home</a>
-                            </li>
-                            <li class="nav-item {{ request()->routeIs('about') ? 'active' : '' }}">
-                                <a class="nav-link" href="{{ route('about') }}">About Us</a>
-                            </li>
-                            <li class="nav-item {{ request()->routeIs('contact') ? 'active' : '' }}">
-                                <a class="nav-link" href="{{ route('contact') }}">Contact</a>
-                            </li>
-                        </ul>
+                        <div class="site-navbar-panel">
+                            <ul class="navbar-nav site-navbar-nav">
+                                <li class="nav-item {{ request()->routeIs('home') ? 'active' : '' }}">
+                                    <a class="nav-link" href="{{ route('home') }}">Home</a>
+                                </li>
+                                <li class="nav-item {{ request()->routeIs('about') ? 'active' : '' }}">
+                                    <a class="nav-link" href="{{ route('about') }}">About Us</a>
+                                </li>
+                                <li class="nav-item {{ request()->routeIs('contact') ? 'active' : '' }}">
+                                    <a class="nav-link" href="{{ route('contact') }}">Contact</a>
+                                </li>
+                            </ul>
 
-                        <div class="site-navbar-actions">
-                            <a class="site-nav-action site-nav-action-secondary" href="{{ route('login') }}">Sign In</a>
-                            <a class="site-nav-action site-nav-action-primary" href="{{ route('register') }}">Create Account</a>
+                            <div class="site-navbar-actions">
+                                <a class="site-nav-action site-nav-action-secondary" href="{{ route('login') }}">Sign In</a>
+                                <a class="site-nav-action site-nav-action-primary" href="{{ route('register') }}">Create Account</a>
+                            </div>
                         </div>
                     </div>
                 </nav>
